@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Books!
 columns = [:title, :author, :rating]
 
 books =
@@ -36,4 +37,15 @@ records.each do |record|
     book.assign_attributes(record)
   end
   book.save!
+end
+
+
+# Categories!
+categories = [ "Fiction", "Non-fiction", "Science Fiction", "Earth Science",
+  "Mathematics", "Programming" ]
+
+categories.each do |c|
+  cat_in_db = Category.where({name: c}).first
+  cat_in_db = Category.new({name: c}) if cat_in_db.nil?
+  cat_in_db.save!
 end
